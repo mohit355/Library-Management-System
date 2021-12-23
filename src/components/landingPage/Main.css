@@ -1,0 +1,11 @@
+.catalogue {
+  display: flex;
+  flex-direction: column;
+}
+
+.catalogue-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
