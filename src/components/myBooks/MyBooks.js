@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import * as actions from "../../state/action/index";
 import BookCard from "../../UI/bookCard/BookCard";
+import Button from "../../UI/button/Button";
 
 import "./MyBooks.css";
 const MyBooks = (props) => {
@@ -14,6 +16,10 @@ const MyBooks = (props) => {
 
   return (
     <div className="myBooks">
+      <div>
+        Want to add a new book in the library
+        <Link to="/mybooks/addbook">Add a new Book</Link>
+      </div>
       <div>List of all your books</div>
       <div className="myBooksList">
         {props.myBooks &&

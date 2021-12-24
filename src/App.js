@@ -1,26 +1,58 @@
-import React, { useState } from "react";
-import { Link, Route, Routes, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "./state/action/index";
 import LogIn from "./components/auth/login/LogIn";
 import Catalogue from "./components/landingPage/Main";
 import MyBooks from "./components/myBooks/MyBooks";
 import AddBook from "./components/newBooks/AddBook";
 import Layout from "./hoc/layout/Layout";
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+function App(props) {
+  useEffect(() => {
+    props.onTryAutoSignup();
+  }, []);
 
   return (
-    <Layout>
+    <Layout isAuthenticated={props.isAuthenticated} user={props.user}>
       <div className="App">
         <Routes>
+          <Route
+            path="/"
+            element={
+              props.isAuthenticated ? <Navigate to="/catalogue" /> : <LogIn />
+            }
+          ></Route>
           <Route path="/login" element={<LogIn />}></Route>
-          <Route path="/catalogue" element={<Catalogue />}></Route>
-          <Route path="/mybooks" element={<MyBooks />}>
-            <Route path="addbook" element={<AddBook />}></Route>
-          </Route>
+          <Route
+            path="/catalogue"
+            element={props.isAuthenticated ? <Catalogue /> : <LogIn />}
+          ></Route>
+          <Route
+            path="/mybooks"
+            element={props.isAuthenticated ? <MyBooks /> : <LogIn />}
+          ></Route>
+          <Route
+            path="/mybooks/addbook"
+            element={props.isAuthenticated ? <AddBook /> : <LogIn />}
+          ></Route>
         </Routes>
       </div>
     </Layout>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+    user: state.auth.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

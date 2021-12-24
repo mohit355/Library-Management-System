@@ -1,67 +1,112 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddBook.css";
+import { connect } from "react-redux";
+import * as actions from "../../state/action/index";
 import Input from "../../UI/inuput/Input";
-import Button from "../../UI/button/Button";
 
-const AddBook = () => {
+const AddBook = (props) => {
   const [newBook, setNewBook] = useState({
-    bookTitle: "",
-    authorName: "",
+    title: "",
+    author: "",
     category: "",
-    imageUrl: "",
+    image_url: "",
+    category_id: "",
   });
+
+  useEffect(() => {
+    props.getCategories();
+  }, []);
 
   const handleNewBookData = (event) => {
     setNewBook({ ...newBook, [event.target.name]: event.target.value });
   };
+  const handleNewBookCategoryData = (event) => {
+    let str = event.target.value;
+    setNewBook({
+      ...newBook,
+      [event.target.name]: str.substr(str.indexOf(" ") + 1),
+      category_id: parseInt(str.substr(0, str.indexOf(" "))),
+    });
+  };
 
   const hadleNewBookSubmit = (event) => {
     event.preventDefault();
+    props.addNewBook(newBook, props.user_id);
   };
 
   return (
-    <div>
-      <form>
-        <Input
-          type="text"
-          placeholder="Enter book title"
-          autoFocus={true}
-          name="bookTitle"
-          value={newBook.bookTitle}
-          onChange={handleNewBookData}
-        />
-
-        <Input
-          type="text"
-          placeholder="Enter Author Name"
-          autoFocus={true}
-          name="authorName"
-          value={newBook.authorName}
-          onChange={handleNewBookData}
-        />
-
-        {/* fetch category data and populate in the dropdown */}
-        <select
-          onChange={handleNewBookData}
-          value={newBook.category}
-          name="category"
-        >
-          <option></option>
-        </select>
-
-        <Input
-          type="text"
-          placeholder="Enter book image URL"
-          autoFocus={true}
-          name="imageUrl"
-          value={newBook.imageUrl}
-          onChange={handleNewBookData}
-        />
-
-        <Button onClick={hadleNewBookSubmit}>Add book</Button>
-      </form>
+    <div className="addBook">
+      <div className="container">
+        <form id="contact" onSubmit={hadleNewBookSubmit}>
+          <h3>Add a new book in the library</h3>
+          <h4>Give your contribuation</h4>
+          <Input
+            type="text"
+            placeholder="Book Title"
+            name="title"
+            autoFocus
+            tabIndex="1"
+            required
+            onChange={handleNewBookData}
+          />
+          <Input
+            placeholder="Enter author name"
+            type="text"
+            name="author"
+            tabIndex="2"
+            required
+            onChange={handleNewBookData}
+          />
+          <Input
+            placeholder="Image url"
+            name="image_url"
+            type="url"
+            tabIndex="4"
+            required
+            onChange={handleNewBookData}
+          />
+          <select
+            name="category"
+            onChange={handleNewBookCategoryData}
+            value={newBook.category}
+            required
+          >
+            <option value="" disabled hidden>
+              Select book category
+            </option>
+            {props.categories.map((category) => (
+              <option
+                key={category.fields.id}
+                value={category.fields.id + " " + category.fields.category}
+              >
+                {category.fields.category}
+              </option>
+            ))}
+          </select>
+          <div className="submitButton">
+            <button name="submit" type="submit" id="contact-submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default AddBook;
+const mapStateToProps = (state) => {
+  return {
+    categories: state.catalogue.categories,
+    error: state.catalogue.error,
+    user_id: state.auth.loginCreds.user_id,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getCategories: () => dispatch(actions.getCategories()),
+    addNewBook: (book, user) => dispatch(actions.addNewBook(book, user)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddBook);

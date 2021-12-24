@@ -6,21 +6,23 @@ const initialState = {
     password: "",
     user_id: "",
   },
+  token: "",
+  user: "",
   loading: false,
   redirect: false,
   error: false,
 };
 
+const authStart = (state, action) => {
+  return { ...state, loading: true, error: false };
+};
+
 const authSucess = (state, action) => {
-  const loginCreds = {
-    fieldId: action.user.id,
-    userName: action.user.fields.username,
-    password: action.user.fields.password,
-    user_id: action.user.fields.id,
-  };
+  console.log(action);
   return {
     ...state,
-    loginCreds: loginCreds,
+    token: action.token,
+    user: action.user,
     loading: false,
     error: false,
     redirect: true,
@@ -28,23 +30,27 @@ const authSucess = (state, action) => {
 };
 
 const authFail = (state, action) => {
-  return { ...state, error: action.data, redirect: false, loading: false };
+  return { ...state, error: action.error, redirect: false, loading: false };
 };
 
-const authError = (state, action) => {
-  return { ...state, error: action.error, redirect: false, loading: false };
+const authLogout = (state, action) => {
+  return { ...state, token: null, user: null, loading: false, redirect: false };
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.AUTH_START:
+      return authStart(state, action);
+
     case actionTypes.AUTH_SUCCESS:
       return authSucess(state, action);
 
     case actionTypes.AUTH_FAIL:
       return authFail(state, action);
 
-    case actionTypes.AUTH_ERROR:
-      return authError(state, action);
+    case actionTypes.AUTH_LOGOUT:
+      return authLogout(state, action);
+
     default:
       return state;
   }
