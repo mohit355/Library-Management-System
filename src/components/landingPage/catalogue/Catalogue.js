@@ -15,7 +15,7 @@ const Catalogue = ({
   const [visibleCatalogues, setVisibleCatalogues] = useState([]);
   const [index, setIndex] = useState(0);
   useEffect(() => {
-    getCatalogues(category_id, null, true);
+    getCatalogues(category_id, null, true); // dynamic
     setVisibleCatalogues([]);
     setIndex(0);
   }, [category_id]);

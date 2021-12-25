@@ -3,11 +3,17 @@ import * as actionTypes from "../action/actionTypes";
 const initialState = {
   myBooks: [],
   error: false,
+  offset: null,
 };
 
 const myBooksSuccess = (state, action) => {
-  console.log(action);
-  return { ...state, myBooks: action.data };
+  let books = [];
+  if (action.categoryChange) {
+    books = [action.data];
+  } else {
+    books = [...state.myBooks, action.data];
+  }
+  return { ...state, myBooks: books, offset: action.offset };
 };
 
 const myBooksError = (state, action) => {

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "./state/action/index";
 import LogIn from "./components/auth/login/LogIn";
 import Catalogue from "./components/landingPage/Main";
-import MyBooks from "./components/myBooks/MyBooks";
+import MyBooksMain from "./components/myBooks/MyBookMain";
 import AddBook from "./components/newBooks/AddBook";
 import Layout from "./hoc/layout/Layout";
 
@@ -30,7 +30,7 @@ function App(props) {
           ></Route>
           <Route
             path="/mybooks"
-            element={props.isAuthenticated ? <MyBooks /> : <LogIn />}
+            element={props.isAuthenticated ? <MyBooksMain /> : <LogIn />}
           ></Route>
           <Route
             path="/mybooks/addbook"
