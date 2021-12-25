@@ -14,13 +14,16 @@ export const myBookError = (error) => {
 };
 
 export const addNewBook = (bookDetails, user_id) => {
+  console.log("user_id ", user_id);
   return async (dispatch) => {
     const data = {
-      records: [{ fields: { ...bookDetails, created_by_user_id: user_id } }],
+      records: [
+        { fields: { ...bookDetails, created_by_user_id: parseInt(user_id) } },
+      ],
     };
-    console.log(JSON.stringify(data));
+    console.log(data);
     await axios
-      .post(`/library/`, JSON.stringify(data), {
+      .post(`/library/`, data, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer keyoPS4nMgbO1Ug6m`,

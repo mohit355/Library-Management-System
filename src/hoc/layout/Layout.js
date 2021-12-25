@@ -13,14 +13,14 @@ const Layout = (props) => {
     <div>
       <nav className="navbar">
         <div className="navItems">
-          <Link className="navItem" to="/catalogue">
-            Catalogue
-          </Link>
-          <Link className="navItem" to="/mybooks">
-            My Books
-          </Link>
           {props.isAuthenticated ? (
             <>
+              <Link className="navItem" to="/catalogue">
+                Catalogue
+              </Link>
+              <Link className="navItem" to="/mybooks">
+                My Books
+              </Link>
               <Link className="navItem" to="/">
                 {props.user.username}
               </Link>
@@ -38,6 +38,15 @@ const Layout = (props) => {
         </div>
       </nav>
       <div>{props.children}</div>
+      <footer>
+        handleLogOut<div> handleLogOut</div>
+        handleLogOut<div> handleLogOut</div>
+        handleLogOut<div> handleLogOut</div>
+        handleLogOut<div> handleLogOut</div>
+        handleLogOut<div> handleLogOut</div>
+        handleLogOut<div> handleLogOut</div>
+        handleLogOut<div> handleLogOut</div>
+      </footer>
     </div>
   );
 };

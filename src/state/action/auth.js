@@ -23,7 +23,6 @@ export const authFail = (userDetails) => {
 };
 
 export const logout = () => {
-  console.log("logout");
   localStorage.removeItem("token");
   localStorage.removeItem("expirationDate");
   localStorage.removeItem("user");
@@ -33,7 +32,6 @@ export const logout = () => {
 };
 
 export const checkAuthTimeout = (expirationTime) => {
-  console.log("hello");
   return (dispatch) => {
     setTimeout(() => {
       dispatch(logout());
@@ -52,7 +50,7 @@ export const isUserValid = (user) => {
 
     dispatch(authStart());
     axios
-      .get(`/user?filterByFormula=${filterQuery}`, {
+      .get(`/user?fields=id&fields=username&filterByFormula=${filterQuery}`, {
         headers: {
           Authorization: `Bearer keyoPS4nMgbO1Ug6m`,
         },
@@ -61,7 +59,6 @@ export const isUserValid = (user) => {
         const userDetails = res.data.records;
         if (userDetails.length === 1) {
           const expirationDate = new Date(new Date().getTime() + 100000);
-          console.log(expirationDate);
           localStorage.setItem("token", userDetails[0].fields.id);
           localStorage.setItem("expirationDate", expirationDate);
           localStorage.setItem(
@@ -69,9 +66,7 @@ export const isUserValid = (user) => {
             JSON.stringify({ ...userDetails[0].fields, password: undefined })
           );
           const users = { ...userDetails[0].fields, password: undefined };
-          console.log("users ", users);
           dispatch(authSucess(users.id, users));
-          console.log(userDetails);
           dispatch(checkAuthTimeout(100000));
         } else {
           dispatch(authFail(userDetails));

@@ -4,6 +4,7 @@ const initialState = {
   categories: [],
   error: false,
   catalogues: [],
+  offset: null,
 };
 
 const getCategorySuccess = (state, action) => {
@@ -14,7 +15,17 @@ const getCategoryError = (state, action) => {
 };
 
 const getCatalogueSuccess = (state, action) => {
-  return { ...state, catalogues: action.data };
+  let catalogue = [];
+  if (action.categoryChange) {
+    catalogue = [action.data];
+  } else {
+    catalogue = [...state.catalogues, action.data];
+  }
+  return {
+    ...state,
+    catalogues: catalogue,
+    offset: action.offset,
+  };
 };
 const getCatalogueError = (state, action) => {
   return { ...state, error: true };

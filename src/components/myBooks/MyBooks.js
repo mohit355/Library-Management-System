@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import * as actions from "../../state/action/index";
 import BookCard from "../../UI/bookCard/BookCard";
 import Button from "../../UI/button/Button";
+import Pagination from "../../UI/pagination/Pagination";
 
 import "./MyBooks.css";
 const MyBooks = (props) => {
+  const id = props.user_id || localStorage.getItem("token");
   useEffect(() => {
-    // console.log(props.user_id);
-    if (props.user_id) {
-      props.getMyBooks(props.user_id);
+    if (id) {
+      props.getMyBooks(id);
     }
   }, []);
 
@@ -41,7 +42,7 @@ const mapStateToProps = (state) => {
   return {
     myBooks: state.myBooks.myBooks,
     error: state.myBooks.error,
-    user_id: state.auth.loginCreds.user_id,
+    user_id: state.auth.token,
   };
 };
 

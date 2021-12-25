@@ -31,7 +31,8 @@ const AddBook = (props) => {
 
   const hadleNewBookSubmit = (event) => {
     event.preventDefault();
-    props.addNewBook(newBook, props.user_id);
+    const id = props.user_id || localStorage.getItem("token");
+    props.addNewBook(newBook, id);
   };
 
   return (
@@ -105,7 +106,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCategories: () => dispatch(actions.getCategories()),
-    addNewBook: (book, user) => dispatch(actions.addNewBook(book, user)),
+    addNewBook: (book, id) => dispatch(actions.addNewBook(book, id)),
   };
 };
 

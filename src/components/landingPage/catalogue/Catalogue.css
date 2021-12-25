@@ -5,3 +5,16 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+#catalogue .catalogue_data {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#catalogue .catalogue_pagination {
+  display: flex;
+  width: inherit;
+}
