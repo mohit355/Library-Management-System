@@ -6,11 +6,16 @@
   align-items: center;
   justify-content: center;
   border-radius: 15px;
+  margin: 1em;
   background-color: transparent;
   -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
   -o-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.img-card:hover {
+  cursor: pointer;
 }
 
 .img-card .card-image {
@@ -23,7 +28,6 @@
 
 .img-card .card-image img {
   width: 100%;
-  /* height:; */
   border-radius: 15px 15px 0px 0px;
   -webkit-transition: all 0.8s;
   -moz-transition: all 0.8s;

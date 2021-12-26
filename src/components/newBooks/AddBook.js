@@ -4,7 +4,14 @@ import { connect } from "react-redux";
 import * as actions from "../../state/action/index";
 import Input from "../../UI/inuput/Input";
 
-const AddBook = (props) => {
+const AddBook = ({
+  getCategories,
+  user_id,
+  addNewBook,
+  redirect,
+  categories,
+  error,
+}) => {
   const [newBook, setNewBook] = useState({
     title: "",
     author: "",
@@ -14,7 +21,7 @@ const AddBook = (props) => {
   });
 
   useEffect(() => {
-    props.getCategories();
+    getCategories();
   }, []);
 
   const handleNewBookData = (event) => {
@@ -31,75 +38,83 @@ const AddBook = (props) => {
 
   const hadleNewBookSubmit = (event) => {
     event.preventDefault();
-    const id = props.user_id || localStorage.getItem("token");
-    props.addNewBook(newBook, id);
+    const id = user_id || localStorage.getItem("token");
+    addNewBook(newBook, id);
   };
 
   return (
     <div className="addBook">
-      <div className="container">
-        <form id="contact" onSubmit={hadleNewBookSubmit}>
-          <h3>Add a new book in the library</h3>
-          <h4>Give your contribuation</h4>
-          <Input
-            type="text"
-            placeholder="Book Title"
-            name="title"
-            autoFocus
-            tabIndex="1"
-            required
-            onChange={handleNewBookData}
-          />
-          <Input
-            placeholder="Enter author name"
-            type="text"
-            name="author"
-            tabIndex="2"
-            required
-            onChange={handleNewBookData}
-          />
-          <Input
-            placeholder="Image url"
-            name="image_url"
-            type="url"
-            tabIndex="4"
-            required
-            onChange={handleNewBookData}
-          />
-          <select
-            name="category"
-            onChange={handleNewBookCategoryData}
-            value={newBook.category}
-            required
-          >
-            <option value="" disabled hidden>
-              Select book category
-            </option>
-            {props.categories.map((category) => (
-              <option
-                key={category.fields.id}
-                value={category.fields.id + " " + category.fields.category}
-              >
-                {category.fields.category}
+      {redirect ? (
+        <>
+          {/* {alert("New book added successfully")}
+          <Navigate to="/mybooks" /> */}
+        </>
+      ) : (
+        <div className="container">
+          <form id="contact" onSubmit={hadleNewBookSubmit}>
+            <h3>Add a new book in the library</h3>
+            <h4>Give your contribuation</h4>
+            <Input
+              type="text"
+              placeholder="Book Title"
+              name="title"
+              autoFocus
+              tabIndex="1"
+              required
+              onChange={handleNewBookData}
+            />
+            <Input
+              placeholder="Enter author name"
+              type="text"
+              name="author"
+              tabIndex="2"
+              required
+              onChange={handleNewBookData}
+            />
+            <Input
+              placeholder="Image url"
+              name="image_url"
+              type="url"
+              tabIndex="4"
+              required
+              onChange={handleNewBookData}
+            />
+            <select
+              className="addbook_category"
+              name="category"
+              onChange={handleNewBookCategoryData}
+              value={newBook.category}
+              required
+            >
+              <option value="" disabled hidden>
+                Select book category
               </option>
-            ))}
-          </select>
-          <div className="submitButton">
-            <button name="submit" type="submit" id="contact-submit">
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+              {categories.map((category) => (
+                <option
+                  key={category.fields.id}
+                  value={category.fields.id + " " + category.fields.category}
+                >
+                  {category.fields.category}
+                </option>
+              ))}
+            </select>
+            <div className="submitButton">
+              <button name="submit" type="submit" id="contact-submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
+    error: state.newBook.error,
+    redirect: state.newBook.redirect,
     categories: state.catalogue.categories,
-    error: state.catalogue.error,
-    user_id: state.auth.loginCreds.user_id,
   };
 };
 
@@ -107,6 +122,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getCategories: () => dispatch(actions.getCategories()),
     addNewBook: (book, id) => dispatch(actions.addNewBook(book, id)),
+    setRedirect: () => dispatch(actions.setRedirect()),
   };
 };
 

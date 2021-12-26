@@ -24,6 +24,13 @@ export const getCatalogueSuccess = (catalogue, offset, categoryChange) => {
   };
 };
 
+export const setLoading = (value) => {
+  return {
+    type: actionTypes.SET_CATALOGUE_LOADING,
+    value: value,
+  };
+};
+
 export const getCatalogueError = (error) => {
   return {
     type: actionTypes.GET_CATALOGUE_ERROR,
@@ -34,11 +41,14 @@ export const getCatalogueError = (error) => {
 export const getCategories = (user) => {
   return async (dispatch) => {
     await axios
-      .get(`/category`, {
-        headers: {
-          Authorization: `Bearer keyoPS4nMgbO1Ug6m`,
-        },
-      })
+      .get(
+        `/category?sort%5B0%5D%5Bfield%5D=category&sort%5B0%5D%5Bdirection%5D=asc`,
+        {
+          headers: {
+            Authorization: `Bearer keyoPS4nMgbO1Ug6m`,
+          },
+        }
+      )
       .then((res) => {
         if (res.data.records) {
           dispatch(getCategorySuccess(res.data.records));
@@ -67,8 +77,11 @@ export const getCatalogues = (
       filterQuery = offset + filterQuery;
     }
 
-    filterQuery = "?" + filterQuery;
+    filterQuery =
+      "?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc&" +
+      filterQuery;
 
+    console.log(filterQuery);
     await axios
       .get(`/library${filterQuery}`, {
         headers: {

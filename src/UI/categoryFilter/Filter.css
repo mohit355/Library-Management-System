@@ -1,0 +1,19 @@
+.catalogue-filter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 3em;
+  font-weight: bold;
+  /* box-shadow: 2px 2px 2px 2px gray; */
+}
+
+.catalogue-filter div {
+  margin-left: 5%;
+}
+
+.filter-select {
+  display: flex;
+  height: 3em;
+  border-radius: 5px;
+  outline: none;
+}

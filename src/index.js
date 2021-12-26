@@ -9,12 +9,14 @@ import App from "./App";
 import authReducer from "./state/reducer/auth";
 import catalogueReducer from "./state/reducer/catalogue";
 import myBooksReducer from "./state/reducer/myBook";
+import newBookReducer from "./state/reducer/newBook";
 
 // root reducre
 const rootReducer = combineReducers({
   auth: authReducer,
   catalogue: catalogueReducer,
   myBooks: myBooksReducer,
+  newBook: newBookReducer,
 });
 
 // redux store

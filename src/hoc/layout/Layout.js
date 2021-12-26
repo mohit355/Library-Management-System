@@ -38,15 +38,6 @@ const Layout = (props) => {
         </div>
       </nav>
       <div>{props.children}</div>
-      <footer>
-        handleLogOut<div> handleLogOut</div>
-        handleLogOut<div> handleLogOut</div>
-        handleLogOut<div> handleLogOut</div>
-        handleLogOut<div> handleLogOut</div>
-        handleLogOut<div> handleLogOut</div>
-        handleLogOut<div> handleLogOut</div>
-        handleLogOut<div> handleLogOut</div>
-      </footer>
     </div>
   );
 };

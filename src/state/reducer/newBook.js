@@ -1,25 +1,32 @@
 import * as actionTypes from "../action/actionTypes";
 
 const initialState = {
-  myBooks: [],
+  newBook: [],
   error: false,
+  redirect: false,
 };
 
-const myBooksSuccess = (state, action) => {
-  console.log(action);
-  return { ...state, myBooks: action.data };
+const newBookSuccess = (state, action) => {
+  console.log("succccccc");
+  return { ...state, newBook: action.data, redirect: true };
+};
+const newBookError = (state, action) => {
+  return { ...state, error: true, redirect: false };
 };
 
-const myBooksError = (state, action) => {
-  return { ...state, error: action.error };
+const setRedirect = (state, action) => {
+  return { ...state, redirect: false };
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_MYBOOKS_SUCCESS:
-      return myBooksSuccess(state, action);
-    case actionTypes.GET_MYBOOKS_ERROR:
-      return myBooksError(state, action);
+    case actionTypes.ADD_NEWBOOK_SUCCESS:
+      return newBookSuccess(state, action);
+    case actionTypes.ADD_NEWBOOK_ERROR:
+      return newBookError(state, action);
+
+    case actionTypes.SET_NEWBOOK_REDIRECT:
+      return setRedirect(state, action);
     default:
       return state;
   }

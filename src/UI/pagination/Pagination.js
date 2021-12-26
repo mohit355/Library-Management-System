@@ -8,6 +8,7 @@ const Pagination = ({
   searchNextPage,
   index,
   setIndex,
+  setLoading,
 }) => {
   const [nextDisable, setNextDisable] = useState(true);
 
@@ -24,6 +25,7 @@ const Pagination = ({
   const handleNextPage = (event) => {
     if (dataArray[index + 1] === undefined) {
       setIndex(index + 1);
+      setLoading(true);
       searchNextPage();
     } else {
       setVisibleCatalogues(dataArray[index + 1]);

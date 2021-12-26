@@ -5,6 +5,7 @@ const initialState = {
   error: false,
   catalogues: [],
   offset: null,
+  loading: false,
 };
 
 const getCategorySuccess = (state, action) => {
@@ -25,10 +26,16 @@ const getCatalogueSuccess = (state, action) => {
     ...state,
     catalogues: catalogue,
     offset: action.offset,
+    loading: false,
   };
 };
 const getCatalogueError = (state, action) => {
   return { ...state, error: true };
+};
+
+const setLoading = (state, action) => {
+  console.log(action);
+  return { ...state, loading: action.value };
 };
 
 const reducer = (state = initialState, action) => {
@@ -44,6 +51,9 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.GET_CATALOGUE_ERROR:
       return getCatalogueError(state, action);
+
+    case actionTypes.SET_CATALOGUE_LOADING:
+      return setLoading(state, action);
 
     default:
       return state;

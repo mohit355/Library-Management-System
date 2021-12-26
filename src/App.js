@@ -7,6 +7,7 @@ import Catalogue from "./components/landingPage/Main";
 import MyBooksMain from "./components/myBooks/MyBookMain";
 import AddBook from "./components/newBooks/AddBook";
 import Layout from "./hoc/layout/Layout";
+import "./App.css";
 
 function App(props) {
   useEffect(() => {

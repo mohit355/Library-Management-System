@@ -1,4 +1,4 @@
 export { isUserValid, authCheckState, logout } from "./auth";
-export { getCategories, getCatalogues } from "./catalogue";
-export { getMyBooks } from "./myBook";
-export { addNewBook } from "./newBook";
+export { getCategories, getCatalogues, setLoading } from "./catalogue";
+export { getMyBooks, setMyBookLoading } from "./myBook";
+export { addNewBook, setRedirect } from "./newBook";

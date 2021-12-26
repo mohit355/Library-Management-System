@@ -1,15 +1,22 @@
 import axios from "../../config";
 import * as actionTypes from "./actionTypes";
 
-export const newBookSuccess = () => {
+export const newBookSuccess = (data) => {
   return {
     type: actionTypes.ADD_NEWBOOK_SUCCESS,
+    data: data,
   };
 };
-export const myBookError = (error) => {
+export const newBookError = (error) => {
   return {
     type: actionTypes.ADD_NEWBOOK_ERROR,
     error: error,
+  };
+};
+
+export const setRedirect = () => {
+  return {
+    type: actionTypes.SET_NEWBOOK_REDIRECT,
   };
 };
 
@@ -21,7 +28,6 @@ export const addNewBook = (bookDetails, user_id) => {
         { fields: { ...bookDetails, created_by_user_id: parseInt(user_id) } },
       ],
     };
-    console.log(data);
     await axios
       .post(`/library/`, data, {
         headers: {
@@ -30,11 +36,10 @@ export const addNewBook = (bookDetails, user_id) => {
         },
       })
       .then((res) => {
-        console.log(res);
-        dispatch(newBookSuccess());
+        dispatch(newBookSuccess(res.data.records));
       })
       .catch((err) => {
-        dispatch(myBookError(err));
+        dispatch(newBookError(err));
       });
   };
 };

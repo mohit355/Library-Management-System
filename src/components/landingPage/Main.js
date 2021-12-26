@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import * as actions from "../../state/action/index";
+import React, { useState } from "react";
 import Filter from "../../UI/categoryFilter/Filter";
 import Catalogue from "./catalogue/Catalogue";
 import "./Main.css";

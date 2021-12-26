@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as actions from "../../state/action/index";
 import { connect } from "react-redux";
+import "./Filter.css";
 
 const Filter = ({ getCategories, categories, category, setCategory }) => {
   useEffect(() => {
@@ -10,11 +11,16 @@ const Filter = ({ getCategories, categories, category, setCategory }) => {
   const handleDropdownChange = (event) => {
     setCategory(event.target.value);
   };
+
   return (
     <div className="catalogue-filter">
       <div>Filter by Category</div>
       <div>
-        <select onChange={handleDropdownChange} value={category}>
+        <select
+          className="filter-select"
+          onChange={handleDropdownChange}
+          value={category}
+        >
           <option value={""}>All categories</option>
           {categories.map((category) => (
             <option key={category.id} value={category.fields.id}>

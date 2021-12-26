@@ -9,11 +9,17 @@ const BookCard = ({ title, author, category, imageUrl }) => {
           <img src={imageUrl} alt="" />
         </div>
 
-        <span className="card-title">{title}</span>
+        <span className="card-title">
+          {title && title.length > 20
+            ? title.substring(0, 20)
+            : title
+            ? title
+            : "NO TITLE"}
+        </span>
 
         <div className="card-text">
-          <p>By: {author}</p>
-          <p>{category}</p>
+          <p>By: {author ? author : "Not available"}</p>
+          <p>{category ? category : "Uncategorised"}</p>
         </div>
       </div>
     </div>

@@ -16,6 +16,13 @@ export const myBooksError = (error) => {
   };
 };
 
+export const setMyBookLoading = (value) => {
+  return {
+    type: actionTypes.SET_MYBOOK_LOADING,
+    value: value,
+  };
+};
+
 export const getMyBooks = (user_id, offset, categoryChange) => {
   return async (dispatch) => {
     let filterQuery = "";
@@ -29,7 +36,9 @@ export const getMyBooks = (user_id, offset, categoryChange) => {
       filterQuery = offset + filterQuery;
     }
 
-    filterQuery = "?" + filterQuery;
+    filterQuery =
+      "?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc&" +
+      filterQuery;
     await axios
       .get(`/library${filterQuery}`, {
         headers: {

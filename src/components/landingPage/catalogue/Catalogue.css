@@ -6,11 +6,11 @@
   justify-content: space-evenly;
 }
 
-#catalogue .catalogue_data {
+.catalogue_data {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-evenly;
 }
 
