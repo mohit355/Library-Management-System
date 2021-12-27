@@ -35,30 +35,24 @@ const Pagination = ({
 
   return (
     <div className="pagination">
-      <div>
-        <div>
-          <p>Catalogue per page : 30</p>
-        </div>
+      <div className="pageItemCount">
+        <p>Books per page : 30</p>
       </div>
       <div className="pagination_button">
-        <div>
-          <button
-            className={`${index === 0 ? "disable" : null}`}
-            disabled={index === 0}
-            onClick={handlePreviousPage}
-          >
-            Prev
-          </button>
-        </div>
-        <div>
-          <button
-            className={`${nextDisable ? "disable" : null}`}
-            disabled={nextDisable}
-            onClick={handleNextPage}
-          >
-            Next
-          </button>
-        </div>
+        <button
+          className={`pageButton ${index === 0 ? "disable" : null}`}
+          disabled={index === 0}
+          onClick={handlePreviousPage}
+        >
+          Prev
+        </button>
+        <button
+          className={`pageButton ${nextDisable ? "disable" : null}`}
+          disabled={nextDisable}
+          onClick={handleNextPage}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

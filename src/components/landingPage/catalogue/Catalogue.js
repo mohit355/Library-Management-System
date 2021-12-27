@@ -55,7 +55,7 @@ const Catalogue = ({
                     />
                   ))}
               </div>
-              <div className="catalogue_pagination">
+              <div className="pagination">
                 <Pagination
                   setVisibleCatalogues={setVisibleCatalogues}
                   dataArray={catalogues}
