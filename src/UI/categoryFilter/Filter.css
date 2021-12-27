@@ -2,9 +2,19 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin: 3em;
+  margin: 2em 0;
   font-weight: bold;
   /* box-shadow: 2px 2px 2px 2px gray; */
+}
+
+@media only screen and (max-width: 350px) {
+  .catalogue-filter {
+    flex-direction: column;
+  }
+
+  .catalogue-filter div {
+    margin: 0.5em 0;
+  }
 }
 
 .catalogue-filter div {

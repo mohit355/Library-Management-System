@@ -36,7 +36,10 @@ const Pagination = ({
   return (
     <div className="pagination">
       <div className="pageItemCount">
-        <p>Books per page : 30</p>
+        <p>
+          Number of books in this page :{" "}
+          {dataArray[index] ? dataArray[index].length : 0}
+        </p>
       </div>
       <div className="pagination_button">
         <button

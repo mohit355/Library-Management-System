@@ -58,7 +58,8 @@ export const isUserValid = (user) => {
       .then((res) => {
         const userDetails = res.data.records;
         if (userDetails.length === 1) {
-          const expirationDate = new Date(new Date().getTime() + 100000);
+          const time = 4 * 60 * 60 * 60 * 100;
+          const expirationDate = new Date(new Date().getTime() + time);
           localStorage.setItem("token", userDetails[0].fields.id);
           localStorage.setItem("expirationDate", expirationDate);
           localStorage.setItem(
@@ -67,7 +68,7 @@ export const isUserValid = (user) => {
           );
           const users = { ...userDetails[0].fields, password: undefined };
           dispatch(authSucess(users.id, users));
-          dispatch(checkAuthTimeout(100000));
+          dispatch(checkAuthTimeout(time));
         } else {
           dispatch(authFail(userDetails));
         }

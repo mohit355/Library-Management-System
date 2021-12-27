@@ -36,6 +36,7 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.SET_MYBOOK_LOADING:
       return setMyBookLoading(state, action);
+
     default:
       return state;
   }

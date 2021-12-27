@@ -43,11 +43,13 @@ const MyBooks = ({
         alert("Network error")
       ) : (
         <>
-          <div>
-            Want to add a new book in the library
-            <Link to="/mybooks/addbook">Add a new Book</Link>
+          <div className="addNewBook">
+            <div className="text">Add a new book in the library</div>
+            <Link className="addbook_button" to="/mybooks/addbook">
+              Add a new Book
+            </Link>
           </div>
-          <div>List of all your books</div>
+          <div className="myBook-title">Here is your BookList</div>
           {loading ? (
             <Spinner />
           ) : (
