@@ -9,6 +9,7 @@ export const myBooksSuccess = (myBooks, offset, categoryChange) => {
     categoryChange: categoryChange,
   };
 };
+
 export const myBooksError = (error) => {
   return {
     type: actionTypes.GET_MYBOOKS_ERROR,
@@ -37,7 +38,7 @@ export const getMyBooks = (user_id, offset, categoryChange) => {
     }
 
     filterQuery =
-      "?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc&" +
+      "?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc&pageSize=40&" +
       filterQuery;
     await axios
       .get(`/library${filterQuery}`, {

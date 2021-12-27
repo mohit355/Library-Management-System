@@ -37,6 +37,7 @@ function App(props) {
             path="/mybooks/addbook"
             element={props.isAuthenticated ? <AddBook /> : <LogIn />}
           ></Route>
+          <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
       </div>
     </Layout>

@@ -3,6 +3,7 @@ import "./AddBook.css";
 import { connect } from "react-redux";
 import * as actions from "../../state/action/index";
 import Input from "../../UI/inuput/Input";
+import { Navigate } from "react-router-dom";
 
 const AddBook = ({
   getCategories,
@@ -45,10 +46,7 @@ const AddBook = ({
   return (
     <div className="addBook">
       {redirect ? (
-        <>
-          {/* {alert("New book added successfully")}
-          <Navigate to="/mybooks" /> */}
-        </>
+        <Navigate to="/mybooks" />
       ) : (
         <div className="container">
           <form id="contact" onSubmit={hadleNewBookSubmit}>

@@ -15,5 +15,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 2.5rem;
+}
+
+.navItem {
+  color: white !important;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.navItem:hover {
+  color: black !important;
 }

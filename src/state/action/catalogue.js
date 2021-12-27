@@ -78,7 +78,7 @@ export const getCatalogues = (
     }
 
     filterQuery =
-      "?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc&" +
+      "?sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc&pageSize=50&" +
       filterQuery;
 
     console.log(filterQuery);

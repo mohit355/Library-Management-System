@@ -2,14 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 70vh;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
   height: 100vh;
-  /* background: url("https://i.imgur.com/HgflTDf.jpg") 50% fixed; */
-  /* background-size: cover; */
+  background: url("https://media.istockphoto.com/photos/blur-school-library-or-study-room-with-book-shelves-for-education-picture-id1066991874?b=1&k=20&m=1066991874&s=170667a&w=0&h=9Kj9XAsVO9isTDbLR3IfUDM7tqLUEbq3OL6aR3Dnhic=")
+    50% fixed;
+  background-size: cover;
   background-color: rgba(134, 145, 160, 0.425);
 }
 
@@ -93,4 +94,5 @@ a {
   margin: 10px 0 30px 0;
   border-bottom: 1px solid #eee;
   padding-bottom: 20px;
+  text-align: center;
 }

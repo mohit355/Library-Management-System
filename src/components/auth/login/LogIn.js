@@ -5,8 +5,8 @@ import * as actions from "../../../state/action/index";
 import "./LogIn.css";
 import Button from "../../../UI/button/Button";
 import Input from "../../../UI/inuput/Input";
-
-const LogIn = (props) => {
+import Spinner from "../../../UI/spinner/Spinner";
+const LogIn = ({ isUserValid, redirect, error, loading }) => {
   const [loginCreds, setLoginCreds] = useState({
     userName: "",
     password: "",
@@ -18,39 +18,40 @@ const LogIn = (props) => {
 
   const handleLoginFormSubmit = (e) => {
     e.preventDefault();
-    props.isUserValid(loginCreds);
+    isUserValid(loginCreds);
   };
 
   return (
     <div className="loginPage">
-      {props.redirect ? <Navigate to="/catalogue" /> : null}
+      {redirect ? <Navigate to="/catalogue" /> : null}
       <div className="wrapper">
-        <form className="login">
-          <p className="title">Log in</p>
-          {props.error ? "Wrong userName or password" : null}
+        {loading ? (
+          <Spinner />
+        ) : (
+          <form className="login">
+            <p className="title">Log in to continue</p>
+            {error ? "Wrong userName or password" : null}
+            <Input
+              type="text"
+              placeholder="Username"
+              autoFocus={true}
+              name="userName"
+              value={loginCreds.userName}
+              onChange={handleLoginDataChange}
+            />
+            <i className="fa fa-user"></i>
 
-          <Input
-            type="text"
-            placeholder="Username"
-            autoFocus={true}
-            name="userName"
-            value={loginCreds.userName}
-            onChange={handleLoginDataChange}
-          />
-          <i className="fa fa-user"></i>
-
-          <Input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={loginCreds.password}
-            onChange={handleLoginDataChange}
-          />
-          <i className="fa fa-key"></i>
-          <Button onClick={handleLoginFormSubmit}>
-            {props.loading ? "Loading..." : "Log in"}
-          </Button>
-        </form>
+            <Input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={loginCreds.password}
+              onChange={handleLoginDataChange}
+            />
+            <i className="fa fa-key"></i>
+            <Button onClick={handleLoginFormSubmit}>Login</Button>
+          </form>
+        )}
       </div>
     </div>
   );
