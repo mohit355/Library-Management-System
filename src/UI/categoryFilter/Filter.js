@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import * as actions from "../../state/action/index";
 import { connect } from "react-redux";
 import "./Filter.css";

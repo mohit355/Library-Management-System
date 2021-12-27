@@ -4,7 +4,6 @@
   justify-content: flex-end;
   margin: 2em 0;
   font-weight: bold;
-  /* box-shadow: 2px 2px 2px 2px gray; */
 }
 
 @media only screen and (max-width: 350px) {
