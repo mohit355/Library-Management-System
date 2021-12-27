@@ -96,3 +96,10 @@ a {
   padding-bottom: 20px;
   text-align: center;
 }
+
+.welcome {
+  font-weight: bolder;
+  font-size: 2.5em;
+  margin: 1em;
+  text-align: center;
+}

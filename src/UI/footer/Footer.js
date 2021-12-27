@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer">Thanks for using E-library</div>
       <div className="footer">Built with ❤️</div>
       <div className="footer">
-        Designed and code by <strong>Mohit Raj</strong>
+        Designed and code by <strong>MOHIT RAJ</strong>
       </div>
     </footer>
   );

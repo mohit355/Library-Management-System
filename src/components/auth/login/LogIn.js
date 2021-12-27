@@ -25,6 +25,7 @@ const LogIn = ({ isUserValid, redirect, error, loading }) => {
     <div className="loginPage">
       {redirect ? <Navigate to="/catalogue" /> : null}
       <div className="wrapper">
+        <div className="welcome">WELCOME TO E-LIBRARY</div>
         {loading ? (
           <Spinner />
         ) : (
