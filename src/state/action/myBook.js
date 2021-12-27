@@ -1,5 +1,6 @@
 import axios from "../../config";
 import * as actionTypes from "./actionTypes";
+const TOKEN = process.env.REACT_APP_API_KEY;
 
 export const myBooksSuccess = (myBooks, offset, categoryChange) => {
   return {
@@ -43,7 +44,7 @@ export const getMyBooks = (user_id, offset, categoryChange) => {
     await axios
       .get(`/library${filterQuery}`, {
         headers: {
-          Authorization: `Bearer keyoPS4nMgbO1Ug6m`,
+          Authorization: `Bearer ${TOKEN}`,
         },
       })
       .then((res) => {

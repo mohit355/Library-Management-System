@@ -1,5 +1,6 @@
 import axios from "../../config";
 import * as actionTypes from "./actionTypes";
+const TOKEN = process.env.REACT_APP_API_KEY;
 
 export const getCategorySuccess = (categories) => {
   return {
@@ -45,7 +46,7 @@ export const getCategories = (user) => {
         `/category?sort%5B0%5D%5Bfield%5D=category&sort%5B0%5D%5Bdirection%5D=asc`,
         {
           headers: {
-            Authorization: `Bearer keyoPS4nMgbO1Ug6m`,
+            Authorization: `Bearer ${TOKEN}`,
           },
         }
       )
@@ -85,7 +86,7 @@ export const getCatalogues = (
     await axios
       .get(`/library${filterQuery}`, {
         headers: {
-          Authorization: `Bearer keyoPS4nMgbO1Ug6m`,
+          Authorization: `Bearer ${TOKEN}`,
         },
       })
       .then((res) => {

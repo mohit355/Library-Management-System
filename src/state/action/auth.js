@@ -1,5 +1,6 @@
 import axios from "../../config";
 import * as actionTypes from "./actionTypes";
+const TOKEN = process.env.REACT_APP_API_KEY;
 
 export const authStart = () => {
   return {
@@ -52,13 +53,14 @@ export const isUserValid = (user) => {
     axios
       .get(`/user?fields=id&fields=username&filterByFormula=${filterQuery}`, {
         headers: {
-          Authorization: `Bearer keyoPS4nMgbO1Ug6m`,
+          Authorization: `Bearer ${TOKEN}`,
         },
       })
       .then((res) => {
         const userDetails = res.data.records;
+        const time = 4 * 60 * 60 * 60 * 100;
+
         if (userDetails.length === 1) {
-          const time = 4 * 60 * 60 * 60 * 100;
           const expirationDate = new Date(new Date().getTime() + time);
           localStorage.setItem("token", userDetails[0].fields.id);
           localStorage.setItem("expirationDate", expirationDate);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseUrl = axios.create({
-  baseURL: "https://api.airtable.com/v0/appqxnivm1TkaCVrV",
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 export default baseUrl;
