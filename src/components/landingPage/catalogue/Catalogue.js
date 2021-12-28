@@ -23,6 +23,7 @@ const Catalogue = ({
     getCatalogues(category_id, null, true); // dynamic
     setVisibleCatalogues([]);
     setIndex(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category_id]);
 
   const searchNextPage = () => {

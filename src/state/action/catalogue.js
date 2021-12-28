@@ -70,6 +70,7 @@ export const getCatalogues = (
     console.log("category id ", category_id);
     let filterQuery = "";
     if (category_id) {
+      // eslint-disable-next-line no-useless-concat
       filterQuery = "filterByFormula={category_id}=" + `'${category_id}'`;
     }
     console.log("filterQuery ", filterQuery);

@@ -19,7 +19,6 @@ const MyBooks = ({
   const [visibleCatalogues, setVisibleCatalogues] = useState([]);
   const [index, setIndex] = useState(0);
   const id = user_id || localStorage.getItem("token");
-
   useEffect(() => {
     if (id) {
       setMyBookLoading(true);
@@ -27,6 +26,7 @@ const MyBooks = ({
       setVisibleCatalogues([]);
       setIndex(0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const searchNextPage = () => {
