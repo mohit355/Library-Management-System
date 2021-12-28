@@ -15,6 +15,7 @@ const Pagination = ({
   useEffect(() => {
     setVisibleCatalogues(dataArray[index]);
     setNextDisable(isOffset() ? false : true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataArray]);
 
   const handlePreviousPage = (event) => {

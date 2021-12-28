@@ -12,6 +12,7 @@ import "./App.css";
 function App(props) {
   useEffect(() => {
     props.onTryAutoSignup();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
